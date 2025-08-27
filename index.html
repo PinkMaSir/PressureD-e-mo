@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -250,17 +251,17 @@
                 
                 <div class="form-group">
                     <label for="pressure">压力 p (MPa)：</label>
-                    <input type="text" id="pressure" placeholder="例如: 27.95 26.91 25.87 ..." value="27.95 26.91 25.87 24.83 23.79 22.75 21.71 20.67 19.63 18.59 17.55 16.51 15.47 14.43 13.39 12.25 11.21">
+                    <input type="text" id="pressure" placeholder="例如: 11.21 12.25 13.39 ..." value="11.21 12.25 13.39 14.43 15.47 16.51 17.55 18.59 19.63 20.67 21.71 22.75 23.79 24.83 25.87 26.91 27.95">
                 </div>
                 
                 <div class="form-group">
                     <label for="viscosity">气体粘度 μg (mPa·s)：</label>
-                    <input type="text" id="viscosity" placeholder="例如: 0.0243 0.0237 0.0231 ..." value="0.0243 0.0237 0.0231 0.0226 0.022 0.0214 0.0208 0.0203 0.0197 0.0191 0.0185 0.018 0.0174 0.0169 0.0164 0.0159 0.0155">
+                    <input type="text" id="viscosity" placeholder="例如: 0.0155 0.0159 0.0164 ..." value="0.01547 0.01592 0.01636 0.01688 0.01743 0.01799 0.01854 0.0191 0.01968 0.02025 0.02083 0.02141 0.02198 0.02256 0.02314 0.02371 0.02428">
                 </div>
                 
                 <div class="form-group">
                     <label for="zFactor">气体偏差因子 Z：</label>
-                    <input type="text" id="zFactor" placeholder="例如: 0.9008 0.8904 0.8805 ..." value="0.9008 0.8904 0.8805 0.8712 0.8626 0.8548 0.8477 0.8416 0.8365 0.826 0.8299 0.8286 0.8288 0.8305 0.8339 0.839 0.8457">
+                    <input type="text" id="zFactor" placeholder="例如: 0.8457 0.839 0.8339 ..." value="0.8457 0.839 0.8339 0.8305 0.8288 0.8286 0.8299 0.826 0.8365 0.8416 0.8477 0.8548 0.8626 0.8712 0.8805 0.8904 0.9008">
                 </div>
                 
                 <div class="form-group">
@@ -670,9 +671,9 @@
             let lowerIndex = -1;
             let upperIndex = -1;
             
-            // 找到查询值所在区间
+            // 找到查询值所在区间（因压力已从小到大排序，调整判断条件）
             for (let i = 0; i < calculationData.pressure.length - 1; i++) {
-                if (calculationData.pressure[i] >= queryValue && calculationData.pressure[i+1] <= queryValue) {
+                if (calculationData.pressure[i] <= queryValue && calculationData.pressure[i+1] >= queryValue) {
                     lowerIndex = i;
                     upperIndex = i + 1;
                     break;
